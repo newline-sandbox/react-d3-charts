@@ -6,9 +6,6 @@ import { Scatterplot, ScatterplotProps } from "../components/Scatterplot";
 export default {
   title: "Example/Scatterplot",
   component: Scatterplot,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const BASE_ARGS = {

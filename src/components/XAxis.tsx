@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FONT_FAMILY, FONT_SIZE, FONT_COLOR, AXIS_COLOR } from "../enums";
+import { StyledPath, StyledLine, StyledText } from '../styled';
 import { Dimensions } from "../types";
 import { dimensionsPropsType } from "../utils";
 
@@ -29,32 +29,23 @@ export const XAxis = ({
   >
     {(ticks ? ticks : scale.ticks(ticksCount)).map((tick, i) => (
       <g key={`${tick}-${i}`} transform={`translate(${scale(tick)} 0)`}>
-        <line stroke={AXIS_COLOR} y1="5" y2="0" />
-        <text
-          fill={FONT_COLOR}
-          y="20"
-          textAnchor="middle"
-          fontFamily={FONT_FAMILY}
-          fontSize={FONT_SIZE}
-        >
+        <StyledLine y1="5" y2="0" />
+        <StyledText y="20" textAnchor="middle">
           {tick}
-        </text>
+        </StyledText>
       </g>
     ))}
-    <path fill={AXIS_COLOR} d={`M0,2V0H${dimensions.width}V2`}></path>
-    <text
-      fill={FONT_COLOR}
+    <StyledPath d={`M0,2V0H${dimensions.width}V2`} />
+    <StyledText
       x={`${
         dimensions.width / 2 -
         dimensions.margins.left -
         dimensions.margins.right
       }`}
       y={`${dimensions.margins.bottom - 15}`}
-      fontFamily={FONT_FAMILY}
-      fontSize={FONT_SIZE}
     >
       {label}
-    </text>
+    </StyledText>
   </g>
 );
 

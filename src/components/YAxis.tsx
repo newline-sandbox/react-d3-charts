@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FONT_FAMILY, FONT_SIZE, FONT_COLOR, AXIS_COLOR } from "../enums";
+import { StyledPath, StyledLine, StyledText } from "../styled";
 import { Dimensions } from "../types";
 import { dimensionsPropsType } from "../utils";
 
@@ -25,36 +25,25 @@ export const YAxis = ({
   <g transform={`translate(${dimensions.margins.left}, 0)`}>
     {(ticks ? ticks : scale.ticks(ticksCount)).map((tick, i) => (
       <g key={`${tick}-${i}`} transform={`translate(0, ${scale(tick)})`}>
-        <line stroke={AXIS_COLOR} x1="-5" x2="0" />
-        <text
-          fill={FONT_COLOR}
-          x="-10"
-          dominantBaseline="middle"
-          textAnchor="end"
-          fontFamily={FONT_FAMILY}
-          fontSize={FONT_SIZE}
-        >
+        <StyledLine x1="-5" x2="0" />
+        <StyledText x="-10" dominantBaseline="middle" textAnchor="end">
           {tick}
-        </text>
+        </StyledText>
       </g>
     ))}
-    <path
-      fill={AXIS_COLOR}
+    <StyledPath
       d={`M-2,0H0V${
         dimensions.height - (dimensions.margins.bottom - dimensions.margins.top)
       }H-2`}
-    ></path>
-    <text
-      fill={FONT_COLOR}
+    ></StyledPath>
+    <StyledText
       x={`${(dimensions.height / 2) * -1}`}
       y={`${15 - dimensions.margins.left}`}
       transform="rotate(-90)"
       textAnchor="middle"
-      fontFamily={FONT_FAMILY}
-      fontSize={FONT_SIZE}
     >
       {label}
-    </text>
+    </StyledText>
   </g>
 );
 
